@@ -1,19 +1,18 @@
 package com.example.hibernate.dao;
 
+
 import com.example.hibernate.model.Emploee;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface EmploeeDao {
+    void addEmploee(Emploee emploee);
 
-    String addEmploee(String firstName, String lastName, String gender, Integer age, Integer cityId) throws SQLException;
+    Emploee findById(int id);
 
-    Emploee findById(int id) throws SQLException;
+    List<Emploee> getAllEmploee();
 
-    List<Emploee> getAllEmploee() throws SQLException;
+    void updateEmploee(int id,Emploee emploee);
 
-    String updateEmploee(Integer id, String firstName, String lastName, String gender, Integer age, Integer cityId) throws SQLException;
-
-    String deleteEmploeeById(Integer id) throws SQLException;
+    void deleteEmploeeById(int id,Emploee emploee);
 }
