@@ -13,11 +13,11 @@ public class EmploeeService implements EmploeeDao {
 
     @Override
     public void addEmploee(Emploee emploee) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.save(emploee);
-        tx1.commit();
-        session.close();
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx1 = session.beginTransaction();
+            session.save(emploee);
+            tx1.commit();
+        }
     }
 
 
@@ -32,22 +32,19 @@ public class EmploeeService implements EmploeeDao {
     }
 
     @Override
-    public void updateEmploee(int id, Emploee emploee) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        emploee.setId(id);
-        session.update(emploee);
-        tx1.commit();
-        session.close();
+    public void updateEmploee(Emploee emploee) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx1 = session.beginTransaction();
+            session.update(emploee);
+            tx1.commit();
+        }
     }
 
-    @Override
-    public void deleteEmploeeById(int id,Emploee emploee) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        emploee.setId(id);
-        session.delete(emploee);
-        tx1.commit();
-        session.close();
+    public void deleteEmploee(Emploee emploee) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx1 = session.beginTransaction();
+            session.delete(emploee);
+            tx1.commit();
+        }
     }
 }

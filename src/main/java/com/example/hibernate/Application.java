@@ -17,9 +17,10 @@ public class Application {
         System.out.println();
         emploeeService.getAllEmploee();
         System.out.println();
-        Emploee emploee1 = new Emploee("Житарь", "Максим", "МЕН", 11, 3);
-        emploeeService.updateEmploee(15, emploee1);
+        Emploee emploee1 = new Emploee(14, "Житарь", "Максим", "МЕН", 11, 3);
+        emploeeService.updateEmploee(emploee1);
         System.out.println();
-        emploeeService.deleteEmploeeById(15, emploee1);
+        Emploee emploee2 = new Emploee(14, "Житарь", "Максим", "МЕН", 11, 3);
+        emploeeService.deleteEmploee(emploee2);
     }
 }
