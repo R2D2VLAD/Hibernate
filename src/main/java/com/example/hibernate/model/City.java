@@ -1,8 +1,16 @@
 package com.example.hibernate.model;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "city")
 public class City {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id", nullable = false)
+    private int cityId;
+    @Basic
+    @Column(name = "city_name", nullable = false, length = 50)
     private String cityName;
 
     public City() {

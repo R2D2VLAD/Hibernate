@@ -1,24 +1,57 @@
 package com.example.hibernate.model;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "emploee")
 public class Emploee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private int id;
+    @Basic
+    @Column(name = "first_name", nullable = false, length = 50)
     private String firstname;
+    @Basic
+    @Column(name = "last_name", nullable = false, length = 50)
     private String lastname;
+    @Basic
+    @Column(name = "gender", nullable = false, length = 6)
     private String gender;
+    @Basic
+    @Column(name = "age", nullable = false)
     private int age;
-    private City cityId;
+    @Basic
+    @Column(name = "city_id", nullable = false)
+    private int cityId;
 
-    public Emploee(String first_name, String last_name, String gender, int age, int anInt, City city_id) {
-
+    public Emploee(int id, String firstname, String lastname, String gender, int age, int cityId) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.age = age;
+        this.cityId = cityId;
     }
 
-    public Emploee(String firstname, String lastname, String gender, int age, City city_id) {
+    public Emploee(String firstname, String lastname, String gender, int age, int city_id) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.age = age;
         this.cityId = city_id;
+    }
+
+    public Emploee() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -53,11 +86,11 @@ public class Emploee {
         this.age = age;
     }
 
-    public City getCityId() {
+    public int getCityId() {
         return cityId;
     }
 
-    public void setCityId(City cityId) {
+    public void setCityId(int cityId) {
         this.cityId = cityId;
     }
 
@@ -66,7 +99,7 @@ public class Emploee {
         if (this == o) return true;
         if (!(o instanceof Emploee)) return false;
         Emploee emploee = (Emploee) o;
-        return age == emploee.age && firstname.equals(emploee.firstname) && lastname.equals(emploee.lastname) && gender.equals(emploee.gender) && cityId.equals(emploee.cityId);
+        return age == emploee.age && firstname.equals(emploee.firstname) && lastname.equals(emploee.lastname) && gender.equals(emploee.gender) && cityId == emploee.cityId;
     }
 
     @Override
